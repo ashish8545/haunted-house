@@ -60,9 +60,9 @@ const roofNormalTexture = textureLoader.load('./roof/roof_tiles_14_1k/roof_tiles
 const roofBumpTexture = textureLoader.load('./roof/roof_tiles_14_1k/roof_tiles_14_bump_1k.png')
 
 roofColorTexture.colorSpace = THREE.SRGBColorSpace
-roofARMTexture.colorSpace = THREE.NoColorSpace;
-roofNormalTexture.colorSpace = THREE.NoColorSpace;
-roofBumpTexture.colorSpace = THREE.NoColorSpace;
+roofARMTexture.colorSpace = THREE.NoColorSpace
+roofNormalTexture.colorSpace = THREE.NoColorSpace
+roofBumpTexture.colorSpace = THREE.NoColorSpace
 
 roofColorTexture.repeat.set(2, 1)
 roofARMTexture.repeat.set(2, 1)
@@ -78,6 +78,21 @@ roofColorTexture.wrapT = THREE.RepeatWrapping
 roofARMTexture.wrapT = THREE.RepeatWrapping
 roofNormalTexture.wrapT = THREE.RepeatWrapping
 roofBumpTexture.wrapT = THREE.RepeatWrapping
+
+// bushes
+const bushColorTexture = textureLoader.load('./bush/forest_leaves_02_1k/forest_leaves_02_diffuse_1k.png')
+const bushARMTexture = textureLoader.load('./bush/forest_leaves_02_1k/forest_leaves_02_arm_1k.png')
+const bushNormalTexture = textureLoader.load('./bush/forest_leaves_02_1k/forest_leaves_02_nor_gl_1k.png')
+
+bushColorTexture.colorSpace = THREE.SRGBColorSpace
+
+bushColorTexture.repeat.set(2, 1)
+bushARMTexture.repeat.set(2, 1)
+bushNormalTexture.repeat.set(2, 1)
+
+bushColorTexture.wrapS = THREE.RepeatWrapping
+bushARMTexture.wrapS = THREE.RepeatWrapping
+bushNormalTexture.wrapS = THREE.RepeatWrapping
 
 /**
  * House
@@ -150,7 +165,7 @@ house.add(roof)
 // Door
 const door = new THREE.Mesh(
     new THREE.PlaneGeometry(2.2, 2.2),
-    new THREE.MeshStandardMaterial({"color": "red"})
+    new THREE.MeshStandardMaterial()
 )
 door.position.y = -0.2
 door.position.z = 2 + 0.01
@@ -158,23 +173,33 @@ house.add(door);
 
 // Bushes
 const bushGeometry = new THREE.SphereGeometry(1, 16, 16)
-const bushMaterial = new THREE.MeshStandardMaterial()
+const bushMaterial = new THREE.MeshStandardMaterial({
+    color: '#ccffcc',
+    map: bushColorTexture,
+    aoMap: bushARMTexture,
+    roughnessMap: bushARMTexture,
+    metalnessMap: bushARMTexture,
+    normalMap: bushNormalTexture,
+})
 
 const bush1 = new THREE.Mesh(bushGeometry, bushMaterial)
 bush1.scale.setScalar(0.5);
-bush1.position.set(0.8, -1, 2.2);
+bush1.position.set(0.8, -1, 2);
+bush1.rotation.x = - 0.75
 
 const bush2 = new THREE.Mesh(bushGeometry, bushMaterial)
 bush2.scale.setScalar(0.4);
-bush2.position.set(-1, -1.1, 2.2);
+bush2.position.set(-1, -1.1, 2);
+bush2.rotation.x = - 0.75
 
 const bush3 = new THREE.Mesh(bushGeometry, bushMaterial)
 bush3.scale.setScalar(0.15);
-bush3.position.set(-1.2, -1.2, 2.6);
+bush3.position.set(-1.2, -1.2, 2.4)
 
 const bush4 = new THREE.Mesh(bushGeometry, bushMaterial)
 bush4.scale.setScalar(0.3);
-bush4.position.set(1.4, -1.1, 2.2);
+bush4.position.set(1.4, -1.1, 2);
+bush4.rotation.x = - 0.75
 
 house.add(bush1, bush2, bush3, bush4)
 
