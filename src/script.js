@@ -16,16 +16,59 @@ const canvas = document.querySelector('canvas.webgl')
 const scene = new THREE.Scene()
 
 /**
+ * Textures
+ */
+const textureLoader = new THREE.TextureLoader()
+
+// floor
+const floorAlphaTexture = textureLoader.load('./floor/alpha.jpg')
+const floorColorTexture = textureLoader.load('./floor/rocky_terrain_03_1k/rocky_terrain_03_diff_1k.png')
+const floorARMTexture = textureLoader.load('./floor/rocky_terrain_03_1k/rocky_terrain_03_arm_1k.png')
+const floorNormalTexture = textureLoader.load('./floor/rocky_terrain_03_1k/rocky_terrain_03_nor_gl_1k.png')
+const floorDisplacementTexture = textureLoader.load('./floor/rocky_terrain_03_1k/rocky_terrain_03_disp_1k.png')
+
+floorColorTexture.colorSpace = THREE.SRGBColorSpace
+
+floorColorTexture.repeat.set(2, 2)
+floorARMTexture.repeat.set(2, 2)
+floorNormalTexture.repeat.set(2, 2)
+floorDisplacementTexture.repeat.set(2, 2)
+
+floorColorTexture.wrapS = THREE.RepeatWrapping
+floorARMTexture.wrapS = THREE.RepeatWrapping
+floorNormalTexture.wrapS = THREE.RepeatWrapping
+floorDisplacementTexture.wrapS = THREE.RepeatWrapping
+
+floorColorTexture.wrapT = THREE.RepeatWrapping
+floorARMTexture.wrapT = THREE.RepeatWrapping
+floorNormalTexture.wrapT = THREE.RepeatWrapping
+floorDisplacementTexture.wrapT = THREE.RepeatWrapping
+
+/**
  * House
  */
 
 // Floor
 const floor = new THREE.Mesh(
-    new THREE.PlaneGeometry(20, 20),
-    new THREE.MeshStandardMaterial()
+    new THREE.PlaneGeometry(20, 20, 100, 100),
+    new THREE.MeshStandardMaterial({
+        alphaMap: floorAlphaTexture,
+        transparent: true,
+        map: floorColorTexture,
+        aoMap: floorARMTexture,
+        roughnessMap: floorARMTexture,
+        metalnessMap: floorARMTexture,
+        normalMap: floorNormalTexture,
+        displacementMap: floorDisplacementTexture,
+        displacementScale: 0.7,
+        displacementBias: -0.2
+    })
 )
 floor.rotation.x = - Math.PI * 0.5
 scene.add(floor);
+
+// gui.add(floor.material, 'displacementScale').min(0).max(1).step(0.001).name('floorDisplacementScale')
+// gui.add(floor.material, 'displacementBias').min(-1).max(1).step(0.001).name('floorDisplacementBias')
 
 // House
 const house = new THREE.Group()
