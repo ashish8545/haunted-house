@@ -8,7 +8,7 @@ import GUI from 'lil-gui'
  * Base
  */
 // Debug
-const gui = new GUI()
+// const gui = new GUI()
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -23,10 +23,10 @@ const textureLoader = new THREE.TextureLoader()
 
 // floor
 const floorAlphaTexture = textureLoader.load('./floor/alpha.jpg')
-const floorColorTexture = textureLoader.load('./floor/rocky_terrain_03_1k/rocky_terrain_03_diff_1k.png')
-const floorARMTexture = textureLoader.load('./floor/rocky_terrain_03_1k/rocky_terrain_03_arm_1k.png')
-const floorNormalTexture = textureLoader.load('./floor/rocky_terrain_03_1k/rocky_terrain_03_nor_gl_1k.png')
-const floorDisplacementTexture = textureLoader.load('./floor/rocky_terrain_03_1k/rocky_terrain_03_disp_1k.png')
+const floorColorTexture = textureLoader.load('./floor/rocky_terrain_03_1k/rocky_terrain_03_diff_1k.webp')
+const floorARMTexture = textureLoader.load('./floor/rocky_terrain_03_1k/rocky_terrain_03_arm_1k.webp')
+const floorNormalTexture = textureLoader.load('./floor/rocky_terrain_03_1k/rocky_terrain_03_nor_gl_1k.webp')
+const floorDisplacementTexture = textureLoader.load('./floor/rocky_terrain_03_1k/rocky_terrain_03_disp_1k.webp')
 
 floorColorTexture.colorSpace = THREE.SRGBColorSpace
 
@@ -46,18 +46,18 @@ floorNormalTexture.wrapT = THREE.RepeatWrapping
 floorDisplacementTexture.wrapT = THREE.RepeatWrapping
 
 // Walls
-const wallColorTexture = textureLoader.load('./wall/mossy_brick_1k/mossy_brick_diff_1k.png')
-const wallARMTexture = textureLoader.load('./wall/mossy_brick_1k/mossy_brick_arm_1k.png')
-const wallNormalTexture = textureLoader.load('./wall/mossy_brick_1k/mossy_brick_nor_gl_1k.png')
-const wallDisplacementTexture = textureLoader.load('./wall/mossy_brick_1k/mossy_brick_disp_1k.png')
+const wallColorTexture = textureLoader.load('./wall/mossy_brick_1k/mossy_brick_diff_1k.webp')
+const wallARMTexture = textureLoader.load('./wall/mossy_brick_1k/mossy_brick_arm_1k.webp')
+const wallNormalTexture = textureLoader.load('./wall/mossy_brick_1k/mossy_brick_nor_gl_1k.webp')
+const wallDisplacementTexture = textureLoader.load('./wall/mossy_brick_1k/mossy_brick_disp_1k.webp')
 
 wallColorTexture.colorSpace = THREE.SRGBColorSpace
 
 // Roof
-const roofColorTexture = textureLoader.load('./roof/roof_tiles_14_1k/roof_tiles_14_diff_1k.png')
-const roofARMTexture = textureLoader.load('./roof/roof_tiles_14_1k/roof_tiles_14_arm_1k.png')
-const roofNormalTexture = textureLoader.load('./roof/roof_tiles_14_1k/roof_tiles_14_nor_gl_1k.png')
-const roofBumpTexture = textureLoader.load('./roof/roof_tiles_14_1k/roof_tiles_14_bump_1k.png')
+const roofColorTexture = textureLoader.load('./roof/roof_tiles_14_1k/roof_tiles_14_diff_1k.webp')
+const roofARMTexture = textureLoader.load('./roof/roof_tiles_14_1k/roof_tiles_14_arm_1k.webp')
+const roofNormalTexture = textureLoader.load('./roof/roof_tiles_14_1k/roof_tiles_14_nor_gl_1k.webp')
+const roofBumpTexture = textureLoader.load('./roof/roof_tiles_14_1k/roof_tiles_14_bump_1k.webp')
 
 roofColorTexture.colorSpace = THREE.SRGBColorSpace
 roofARMTexture.colorSpace = THREE.NoColorSpace
@@ -80,9 +80,9 @@ roofNormalTexture.wrapT = THREE.RepeatWrapping
 roofBumpTexture.wrapT = THREE.RepeatWrapping
 
 // bushes
-const bushColorTexture = textureLoader.load('./bush/forest_leaves_02_1k/forest_leaves_02_diffuse_1k.png')
-const bushARMTexture = textureLoader.load('./bush/forest_leaves_02_1k/forest_leaves_02_arm_1k.png')
-const bushNormalTexture = textureLoader.load('./bush/forest_leaves_02_1k/forest_leaves_02_nor_gl_1k.png')
+const bushColorTexture = textureLoader.load('./bush/forest_leaves_02_1k/forest_leaves_02_diffuse_1k.webp')
+const bushARMTexture = textureLoader.load('./bush/forest_leaves_02_1k/forest_leaves_02_arm_1k.webp')
+const bushNormalTexture = textureLoader.load('./bush/forest_leaves_02_1k/forest_leaves_02_nor_gl_1k.webp')
 
 bushColorTexture.colorSpace = THREE.SRGBColorSpace
 
@@ -95,9 +95,9 @@ bushARMTexture.wrapS = THREE.RepeatWrapping
 bushNormalTexture.wrapS = THREE.RepeatWrapping
 
 // Graves
-const graveColorTexture = textureLoader.load('./grave/quarry_wall_02_1k/quarry_wall_02_diff_1k.png')
-const graveARMTexture = textureLoader.load('./grave/quarry_wall_02_1k/quarry_wall_02_arm_1k.png')
-const graveNormalTexture = textureLoader.load('./grave/quarry_wall_02_1k/quarry_wall_02_nor_gl_1k.png')
+const graveColorTexture = textureLoader.load('./grave/quarry_wall_02_1k/quarry_wall_02_diff_1k.webp')
+const graveARMTexture = textureLoader.load('./grave/quarry_wall_02_1k/quarry_wall_02_arm_1k.webp')
+const graveNormalTexture = textureLoader.load('./grave/quarry_wall_02_1k/quarry_wall_02_nor_gl_1k.webp')
 
 graveColorTexture.colorSpace = THREE.SRGBColorSpace
 graveColorTexture.repeat.set(0.3, 0.4)
@@ -121,7 +121,7 @@ doorColorTexture.colorSpace = THREE.SRGBColorSpace
 
 // Floor
 const floor = new THREE.Mesh(
-    new THREE.PlaneGeometry(20, 20, 100, 100),
+    new THREE.PlaneGeometry(20, 20, 50, 50),
     new THREE.MeshStandardMaterial({
         alphaMap: floorAlphaTexture,
         transparent: true,
@@ -147,7 +147,7 @@ scene.add(house)
 
 // Walls
 const walls = new THREE.Mesh(
-    new THREE.BoxGeometry(4, 2.5, 4, 50, 50, 50),
+    new THREE.BoxGeometry(4, 2.5, 4, 10, 10, 10),
     new THREE.MeshStandardMaterial({
         map: wallColorTexture,
         aoMap: wallARMTexture,
@@ -167,7 +167,7 @@ house.add(walls)
 
 // Roof
 const roof = new THREE.Mesh(
-    new THREE.ConeGeometry(3.5, 1.5, 4, 100, 100),
+    new THREE.ConeGeometry(3.5, 1.5, 4, 20, 20),
     new THREE.MeshStandardMaterial({
         map: roofColorTexture,
         aoMap: roofARMTexture,
@@ -182,27 +182,6 @@ const roof = new THREE.Mesh(
 roof.position.y = 1.7
 roof.rotation.y = Math.PI / 4
 house.add(roof)
-
-// Door
-const door = new THREE.Mesh(
-    new THREE.PlaneGeometry(2.2, 2.2, 100, 100),
-    new THREE.MeshStandardMaterial({
-        color: '#f00404',
-        map: doorColorTexture,
-        transparent: true,
-        alphaMap: doorAlphaTexture,
-        aoMap: doorAmbientOcclusionTexture,
-        roughnessMap: doorRoughnessTexture,
-        metalnessMap: doorMetalnessTexture,
-        normalMap: doorNormalTexture,
-        displacementMap: doorHeightTexture,
-        displacementScale: 0.15,
-        displacementBias: -0.04
-    })
-)
-door.position.y = -0.2
-door.position.z = 2 + 0.01
-house.add(door);
 
 // Bushes
 const bushGeometry = new THREE.SphereGeometry(1, 16, 16)
@@ -249,7 +228,7 @@ const graveMaterial = new THREE.MeshStandardMaterial({
 const graves = new THREE.Group()
 scene.add(graves);
 
-for (let i = 0; i < 30; i++) {
+for (let i = 0; i < 20; i++) {
     const angle = Math.random() * Math.PI * 2
     const radius = 3 + Math.random() * 4
     const x = Math.sin(angle) * radius
@@ -268,16 +247,16 @@ for (let i = 0; i < 30; i++) {
  * Lights
  */
 // Ambient light
-const ambientLight = new THREE.AmbientLight('#86cdff', 0.275)
+const ambientLight = new THREE.AmbientLight('#86cdff', 0.15)
 scene.add(ambientLight)
 
 // Directional light
-const directionalLight = new THREE.DirectionalLight('#86cdff', 1)
+const directionalLight = new THREE.DirectionalLight('#86cdff', 0.5)
 directionalLight.position.set(3, 2, -8)
 scene.add(directionalLight)
 
 // Point Light
-const doorLight = new THREE.PointLight("#ff7d46", 10)
+const doorLight = new THREE.PointLight("#ff7d46", 1)
 doorLight.position.set(0, 1.1, 2.2)
 house.add(doorLight)
 
@@ -315,14 +294,73 @@ window.addEventListener('resize', () =>
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-camera.position.x = 4
-camera.position.y = 2
-camera.position.z = 5
+camera.position.x = 7
+camera.position.y = 4
+camera.position.z = 6
 scene.add(camera)
+
+/**
+ * Light Flicker Sound
+ */
+// create an AudioListener and add it to the camera
+const listener = new THREE.AudioListener();
+camera.add( listener );
+const sound = new THREE.PositionalAudio( listener );
+const audioLoader = new THREE.AudioLoader();
+audioLoader.load( './music/flicker.mp3', function( buffer ) {
+	sound.setBuffer(buffer);
+	sound.setRefDistance(1);
+    sound.setLoop(true);
+	sound.play();
+});
+
+// Start audio after user interaction
+const startAudio = () => { 
+    if (listener.context.state === 'suspended') { 
+        listener.context.resume() 
+    } 
+    
+    if (sound.buffer && !sound.isPlaying) {
+        sound.play() 
+    } 
+    
+    window.removeEventListener('click', startAudio) 
+    window.removeEventListener('touchstart', startAudio) 
+} 
+window.addEventListener('click', startAudio) 
+window.addEventListener('touchstart', startAudio)
+
+// Door
+const door = new THREE.Mesh(
+    new THREE.PlaneGeometry(2.2, 2.2, 30, 30),
+    new THREE.MeshStandardMaterial({
+        color: '#f00404',
+        map: doorColorTexture,
+        transparent: true,
+        alphaMap: doorAlphaTexture,
+        aoMap: doorAmbientOcclusionTexture,
+        roughnessMap: doorRoughnessTexture,
+        metalnessMap: doorMetalnessTexture,
+        normalMap: doorNormalTexture,
+        displacementMap: doorHeightTexture,
+        displacementScale: 0.15,
+        displacementBias: -0.04
+    })
+)
+door.position.y = -0.2
+door.position.z = 2 + 0.01
+door.add(sound)
+
+house.add(door);
+
 
 // Controls
 const controls = new OrbitControls(camera, canvas)
 controls.enableDamping = true
+controls.minDistance = 6
+controls.maxDistance = 15
+controls.minPolarAngle = 0; // Top view limit (0 radians)
+controls.maxPolarAngle = Math.PI * 0.47; // Horizon limit (90 degrees)
 
 /**
  * Renderer
@@ -331,7 +369,7 @@ const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 })
 renderer.setSize(sizes.width, sizes.height)
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5))
 
 /**
  * Shadows
@@ -342,9 +380,9 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap
 
 // cast and receive
 directionalLight.castShadow = true
-ghost1.castShadow = true
-ghost2.castShadow = true
-ghost3.castShadow = true
+ghost1.castShadow = false
+ghost2.castShadow = false
+ghost3.castShadow = false
 
 walls.castShadow = true
 walls.receiveShadow = true
@@ -377,7 +415,7 @@ sky.material.uniforms['turbidity'].value = 10
 sky.material.uniforms['rayleigh'].value = 3
 sky.material.uniforms['mieCoefficient'].value = 0.1
 sky.material.uniforms['mieDirectionalG'].value = 0.95
-sky.material.uniforms['sunPosition'].value.set(0.3, -0.038, -0.95)
+sky.material.uniforms['sunPosition'].value.set(0.3, -0.039, -0.95)
 
 /**
  * Fog
@@ -412,6 +450,8 @@ const tick = () =>
     ghost3.position.z = Math.cos(ghost3Angle) * 6
     ghost3.position.y = Math.sin(ghost3Angle) * Math.sin(ghost3Angle * 2.34) * Math.sin(ghost3Angle * 3.45)
 
+    doorLight.intensity = 10 + (Math.random() - Math.sin(ghost3Angle)) * 10;
+
     // Update controls
     controls.update()
 
@@ -423,3 +463,21 @@ const tick = () =>
 }
 
 tick()
+
+
+// Audio
+// const audio = document.getElementById("bg-music");
+// const button = document.getElementById("music-toggle");
+
+// button.addEventListener("click", () => {
+//     if (audio.paused) {
+//         console.log("paused");
+//         audio.play();
+//         button.textContent = "Music: ON";
+//     } else {
+//         console.log("playing");
+//         audio.pause();
+//         button.textContent = "Music: OFF";
+//     }
+// });
+
