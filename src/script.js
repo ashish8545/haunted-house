@@ -44,6 +44,15 @@ floorARMTexture.wrapT = THREE.RepeatWrapping
 floorNormalTexture.wrapT = THREE.RepeatWrapping
 floorDisplacementTexture.wrapT = THREE.RepeatWrapping
 
+// Walls
+
+const wallColorTexture = textureLoader.load('./wall/mossy_brick_1k/mossy_brick_diff_1k.png')
+const wallARMTexture = textureLoader.load('./wall/mossy_brick_1k/mossy_brick_arm_1k.png')
+const wallNormalTexture = textureLoader.load('./wall/mossy_brick_1k/mossy_brick_nor_gl_1k.png')
+const wallDisplacementTexture = textureLoader.load('./wall/mossy_brick_1k/mossy_brick_disp_1k.png')
+
+wallColorTexture.colorSpace = THREE.SRGBColorSpace
+
 /**
  * House
  */
@@ -76,11 +85,23 @@ scene.add(house)
 
 // Walls
 const walls = new THREE.Mesh(
-    new THREE.BoxGeometry(4, 2.5, 4),
-    new THREE.MeshStandardMaterial()
+    new THREE.BoxGeometry(4, 2.5, 4, 50, 50, 50),
+    new THREE.MeshStandardMaterial({
+        map: wallColorTexture,
+        aoMap: wallARMTexture,
+        roughnessMap: wallARMTexture,
+        metalnessMap: wallARMTexture,
+        normalMap: wallNormalTexture,
+        displacementMap: wallDisplacementTexture,
+        displacementScale: 0.094,
+        displacementBias: -0.08
+    })
 )
 house.position.y = 1.25
 house.add(walls)
+
+// gui.add(walls.material, 'displacementScale').min(0).max(1).step(0.001).name('wallsDisplacementScale')
+// gui.add(walls.material, 'displacementBias').min(-1).max(1).step(0.001).name('wallsDisplacementBias')
 
 // Roof
 const roof = new THREE.Mesh(
