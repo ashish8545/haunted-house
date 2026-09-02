@@ -464,3 +464,17 @@ const tick = () =>
 
 tick()
 
+/**
+ * Double click fullscreen mode enter/exit
+ */
+const targetElement = document.getElementById('webgl');
+targetElement.addEventListener('dblclick', () => {
+  if (!document.fullscreenElement) {
+    targetElement.requestFullscreen()
+      .catch((err) => {
+        console.error(`Error attempting to enable fullscreen: ${err.message}`);
+      });
+  } else {
+    document.exitFullscreen();
+  }
+});
