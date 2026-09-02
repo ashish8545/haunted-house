@@ -54,10 +54,10 @@ const wallDisplacementTexture = textureLoader.load('./wall/mossy_brick_1k/mossy_
 wallColorTexture.colorSpace = THREE.SRGBColorSpace
 
 // Roof
-const roofColorTexture = textureLoader.load('./roof/red_slate_roof_tiles_01_1k/red_slate_roof_tiles_01_diff_1k.png')
-const roofARMTexture = textureLoader.load('./roof/red_slate_roof_tiles_01_1k/red_slate_roof_tiles_01_arm_1k.png')
-const roofNormalTexture = textureLoader.load('./roof/red_slate_roof_tiles_01_1k/red_slate_roof_tiles_01_nor_gl_1k.png')
-const roofBumpTexture = textureLoader.load('./roof/red_slate_roof_tiles_01_1k/red_slate_roof_tiles_01_bump_1k.png')
+const roofColorTexture = textureLoader.load('./roof/roof_tiles_14_1k/roof_tiles_14_diff_1k.png')
+const roofARMTexture = textureLoader.load('./roof/roof_tiles_14_1k/roof_tiles_14_arm_1k.png')
+const roofNormalTexture = textureLoader.load('./roof/roof_tiles_14_1k/roof_tiles_14_nor_gl_1k.png')
+const roofBumpTexture = textureLoader.load('./roof/roof_tiles_14_1k/roof_tiles_14_bump_1k.png')
 
 roofColorTexture.colorSpace = THREE.SRGBColorSpace
 roofARMTexture.colorSpace = THREE.NoColorSpace;
@@ -137,17 +137,13 @@ const roof = new THREE.Mesh(
         aoMap: roofARMTexture,
         roughnessMap: roofARMTexture,
         metalnessMap: roofARMTexture,
-        // Normal Map (Overrides bumpMap, so we use normal Map instead)
         normalMap: roofNormalTexture,
         normalScale: new THREE.Vector2(1, 1),
-        
-        // Real geometric depth configuration
         displacementMap: roofBumpTexture,
         displacementScale: 0.2,
     })
 )
-roof.geometry.setAttribute('uv2', new THREE.BufferAttribute(roof.geometry.attributes.uv.array, 2));
-roof.position.y = 1.6
+roof.position.y = 1.7
 roof.rotation.y = Math.PI / 4
 house.add(roof)
 
