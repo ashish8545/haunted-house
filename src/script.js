@@ -94,6 +94,13 @@ bushColorTexture.wrapS = THREE.RepeatWrapping
 bushARMTexture.wrapS = THREE.RepeatWrapping
 bushNormalTexture.wrapS = THREE.RepeatWrapping
 
+// Graves
+const graveColorTexture = textureLoader.load('./grave/quarry_wall_02_1k/quarry_wall_02_diff_1k.png')
+const graveARMTexture = textureLoader.load('./grave/quarry_wall_02_1k/quarry_wall_02_arm_1k.png')
+const graveNormalTexture = textureLoader.load('./grave/quarry_wall_02_1k/quarry_wall_02_nor_gl_1k.png')
+
+graveColorTexture.colorSpace = THREE.SRGBColorSpace
+
 /**
  * House
  */
@@ -205,7 +212,14 @@ house.add(bush1, bush2, bush3, bush4)
 
 // Graves
 const graveGeometry = new THREE.BoxGeometry(0.6, 0.8, 0.2)
-const graveMaterial = new THREE.MeshStandardMaterial()
+const graveMaterial = new THREE.MeshStandardMaterial({
+    // color: '#541616',
+    map: graveColorTexture,
+    aoMap: graveARMTexture,
+    roughnessMap: graveARMTexture,
+    metalnessMap: graveARMTexture,
+    normalMap: graveNormalTexture,
+})
 
 const graves = new THREE.Group()
 scene.add(graves);
