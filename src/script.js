@@ -334,7 +334,7 @@ window.addEventListener('touchstart', startAudio)
 const door = new THREE.Mesh(
     new THREE.PlaneGeometry(2.2, 2.2, 30, 30),
     new THREE.MeshStandardMaterial({
-        color: '#f00404',
+        color: '#cd0909',
         map: doorColorTexture,
         transparent: true,
         alphaMap: doorAlphaTexture,
