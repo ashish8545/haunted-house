@@ -464,20 +464,3 @@ const tick = () =>
 
 tick()
 
-
-// Audio
-// const audio = document.getElementById("bg-music");
-// const button = document.getElementById("music-toggle");
-
-// button.addEventListener("click", () => {
-//     if (audio.paused) {
-//         console.log("paused");
-//         audio.play();
-//         button.textContent = "Music: ON";
-//     } else {
-//         console.log("playing");
-//         audio.pause();
-//         button.textContent = "Music: OFF";
-//     }
-// });
-
